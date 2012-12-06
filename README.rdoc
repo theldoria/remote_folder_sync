@@ -1,0 +1,27 @@
+= remote_folder_sync
+
+* {Homepage}[https://github.com/theldoria/remote_folder_sync#readme]
+* {Issues}[https://github.com/theldoria/remote_folder_sync/issues]
+* {Documentation}[http://rubydoc.info/gems/remote_folder_sync/frames]
+
+== Description
+
+TODO: Description
+
+== Features
+
+== Examples
+
+  require 'remote_folder_sync'
+
+== Requirements
+
+== Install
+
+  $ gem install remote_folder_sync
+
+== Copyright
+
+Copyright (c) 2012 Theldoria
+
+See LICENSE.txt for details.

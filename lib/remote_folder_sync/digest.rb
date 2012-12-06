@@ -35,7 +35,8 @@ class FileDigest
    def test_files(filename_a, filename_b, test_method, other_args)
       GC.start
 
-      raise ArgumentError unless File.exists?(filename_a) and File.exists?(filename_b)
+      raise ArgumentError, "File #{filename_a} does not exist" unless File.exists?(filename_a)
+      raise ArgumentError, "File #{filename_b} does not exist" unless File.exists?(filename_b)
       return false unless File.size(filename_a) == File.size(filename_b)
       file_a = File.new(filename_a, 'r')
       file_b = File.new(filename_b, 'r')
@@ -53,8 +54,8 @@ end
 if $0 == __FILE__
    require 'benchmark'
 
-   FILE1 = "digest.rb"
-   FILE2 = "digest.rb"
+   FILE1 = '\\\\NAS-1T\\photo\\IMG_0011.JPG'
+   FILE2 = '\\\\NAS-1T\\photo\\IMG_0011.JPG'
    REPEATS = 100
 
    d = FileDigest.new
@@ -81,5 +82,18 @@ if $0 == __FILE__
                                                   :test_md5_equality, 102400)}}
       end
    end
+
+
+#                           user     system      total        real
+#String 1K              1.810000   3.463000   5.273000 (  5.787610)
+#String 10K             0.718000   0.842000   1.560000 (  1.560003)
+#String 100K            0.265000   0.484000   0.749000 (  1.107602)
+#CRC32 1K               2.153000   3.650000   5.803000 (  6.333611)
+#CRC32 10K              0.561000   0.780000   1.341000 (  1.825203)
+#CRC32 100K             0.421000   0.437000   0.858000 (  1.310403)
+#MD5 1K                 3.495000   3.588000   7.083000 (  7.597213)
+#MD5 10K                0.983000   0.796000   1.779000 (  2.308804)
+#MD5 100K               0.749000   0.468000   1.217000 (  1.684803)
+
 end
 

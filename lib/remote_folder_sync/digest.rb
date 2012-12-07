@@ -54,8 +54,8 @@ end
 if $0 == __FILE__
    require 'benchmark'
 
-   FILE1 = '\\\\NAS-1T\\photo\\IMG_0011.JPG'
-   FILE2 = '\\\\NAS-1T\\photo\\IMG_0011.JPG'
+   FILE1 = '/mnt/samba/nas-1t/photo/MVI_0055.MOV' # '\\\\NAS-1T\\photo\\IMG_0011.JPG'
+   FILE2 = '/mnt/samba/nas-1t/photo/MVI_0055.MOV' # '\\\\NAS-1T\\photo\\IMG_0011.JPG'
    REPEATS = 100
 
    d = FileDigest.new
@@ -80,6 +80,7 @@ if $0 == __FILE__
                                                  :test_md5_equality, 10240)}}
          x.report("MD5 100K") {REPEATS.times{d.test_files(FILE1, FILE2,
                                                   :test_md5_equality, 102400)}}
+         x.report("cksum") {REPEATS.times{`cksum #{FILE1} #{FILE2}`}}
       end
    end
 
